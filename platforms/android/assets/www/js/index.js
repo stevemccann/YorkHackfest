@@ -46,12 +46,30 @@ var app = {
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             center: myLocation,
             zoom: 15
-        }); 
+        });
+        
+        
+        //add a marker
+        //createMarker(position);
+        var marker = new google.maps.Marker({
+            position: myLocation, 
+            map: map, 
+            title:"Joe"
+                                            });
 	
 	},
 	
 	onError: function(error){
 		alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
 	},
+    
+    //CUSTOM FUNCTIONS
+    createMarker: function(place) {
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+            map: map,
+            position: place.geometry.location
+    }); 
+}
 	
 };
