@@ -28,22 +28,30 @@ var app = {
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
+	
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        app.receivedEvent('deviceready');
+		//ready for work
+		navigator.geolocation.getCurrentPosition(app.onSuccess, app.onError);
     },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
-    }
+	
+	onSuccess: function(position) { 
+    
+        var myLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        
+        map  = new google.maps.Map(document.getElementById('geolocation'), {
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            center: myLocation,
+            zoom: 15
+        }); 
+	
+	},
+	
+	onError: function(error){
+		alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+	},
+	
 };
