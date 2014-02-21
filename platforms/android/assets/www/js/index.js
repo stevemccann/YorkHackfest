@@ -56,6 +56,12 @@ var app = {
             map: map, 
             title:"Joe"
                                             });
+        
+        infowindow = new google.maps.InfoWindow();
+        google.maps.event.addListenter(marker, 'click', function() {
+            infowindow.setContent("Joe is here");
+            infowindow.open(map, this);
+        });
 	
 	},
 	

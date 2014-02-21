@@ -34,4 +34,4 @@ public class HelloWorld extends CordovaActivity
         //super.loadUrl("file:///android_asset/www/index.html")
     }
 }
-
+ 

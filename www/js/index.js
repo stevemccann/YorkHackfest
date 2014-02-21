@@ -16,6 +16,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+// tutorials from: http://www.devx.com/wireless/implement-google-maps-api-on-phonegap-using-the-device-api.html
+// http://vsnomad.com/2013/03/18/dtw-google-maps/
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -56,6 +60,12 @@ var app = {
             map: map, 
             title:"Joe"
                                             });
+        
+        infowindow = new google.maps.InfoWindow();
+        google.maps.event.addListenter(marker, 'click', function() {
+            infowindow.setContent("Joe is here");
+            infowindow.open(map, this);
+        });
 	
 	},
 	
